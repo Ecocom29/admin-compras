@@ -1,0 +1,12 @@
+{
+  "name": "admin-compras",
+  "displayName": "admin-compras",
+  "expo": {
+    "name": "admin-compras",
+    "slug": "admin-compras",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}

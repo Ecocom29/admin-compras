@@ -7,8 +7,6 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 import { gql, useQuery, NetworkStatus , useMutation} from '@apollo/client';
 
-
-
 // obtenerClientePorEmail
 const OBTENER_CLIENTE_EMAIL = gql`
     query obtenerClientePorEmail($correoElectronico: String!){
@@ -64,8 +62,6 @@ const Perfil = () => {
     //     console.log(datosCliente);
 
     // }
-
-
     const obtenerEmail = async () => {
 
         console.log("Removiendo token...");
@@ -102,6 +98,5 @@ const Perfil = () => {
         </Container>
     )
 }
-
 
 export default Perfil;

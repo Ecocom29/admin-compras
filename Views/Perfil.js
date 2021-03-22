@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Container, Button, Text, Card, CardItem, Left, Right, Body, List, Thumbnail, ListItem, Content, Icon, Image, Tab, Tabs, TabHeading } from 'native-base'
 import globalStyles from '../Styles/global';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
 
-import { gql, useQuery, NetworkStatus , useMutation} from '@apollo/client';
+import { gql, useMutation } from '@apollo/client';
 
 // obtenerClientePorEmail
 const OBTENER_CLIENTE_EMAIL = gql`
@@ -30,11 +30,25 @@ const OBTENER_CLIENTE_EMAIL = gql`
 
 const Perfil = () => {
 
-    const { data, loading, error, networkStatus, stopPolling } = useQuery(OBTENER_CLIENTE_EMAIL, {
+    // const [obtenerClientePorEmail] = useMutation(OBTENER_CLIENTE_EMAIL);
+    const navigation = useNavigation();
+    const [loaded, setLoaded] = useState(false);
+
+    //const [cliente, { loading, error }] = useMutation(OBTENER_CLIENTE_EMAIL)
+    
+    useEffect(() => {
+        AsyncStorage.getItem('emailCliente')
+            .then(x => {
+                console.log(x)
+                //cliente();
+
+            })
+    }, []);
+    /* const { data, loading, error, networkStatus, stopPolling } = useQuery(OBTENER_CLIENTE_EMAIL, {
        pollInterval: 3000
     });
 
-    const [obtenerClientePorEmail] = useMutation(OBTENER_CLIENTE_EMAIL);
+   
 
     if (networkStatus === NetworkStatus.refetch) return 'Refetching!';
     if (loading) return null;
@@ -43,25 +57,25 @@ const Perfil = () => {
     console.log('OBTENIENDO DATOS DEL CLIENTE...')
     console.log(data)
     console.log(loading)
-    console.log(error)
+    console.log(error) */
 
-    //const navigation = useNavigation();
 
-    //const obtenerDatoCliente = async () => {
 
-    //     const email = await AsyncStorage.getItem('emailCliente');
+    /* const obtenerDatoCliente = async () => {
+       
+        const email = await AsyncStorage.getItem('emailCliente');
 
-    //     const { data } = await obtenerClientePorEmail({
-    //         variables: {
-    //             email
-    //         }
-    //     });
+        const { data } = await obtenerClientePorEmail({
+            variables: {
+                email
+            }
+        });
 
-    //     const datosCliente = data.obtenerClientePorEmail;
+        const datosCliente = data.obtenerClientePorEmail;
 
-    //     console.log(datosCliente);
+        console.log(datosCliente);
 
-    // }
+    } */
     const obtenerEmail = async () => {
 
         console.log("Removiendo token...");
@@ -79,13 +93,13 @@ const Perfil = () => {
         <Container>
             <Content>
 
-                {
+                {/* {
                     data.obtenerClientePorEmail.map(cliente => (
                             console.log(cliente)
                     ))
                 }
 
-
+                */}
                 <Button
                     squeare
                     block
@@ -94,6 +108,7 @@ const Perfil = () => {
                 >
                     <Text>Cerrar sesión</Text>
                 </Button>
+
             </Content>
         </Container>
     )

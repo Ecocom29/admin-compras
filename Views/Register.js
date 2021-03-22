@@ -87,6 +87,7 @@ const Register = () => {
                         <Input
                             placeholder="Correo Electronico"
                             onChangeText={texto => guardarCorreo(texto)}
+                            autoCapitalize='none'
                         />
 
                     </Item>
@@ -95,6 +96,7 @@ const Register = () => {
                             placeholder="Contraseña"
                             secureTextEntry={true}
                             onChangeText={texto => guardarContrasenia(texto)}
+                            autoCapitalize='none'
                         />
 
                     </Item>

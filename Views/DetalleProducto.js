@@ -32,10 +32,7 @@ const DetalleProducto = ({ route }) => {
                             </Left>
                         </CardItem>
                         <CardItem>
-                            <Body>
-                                {/*  <Image source={{ uri: 'https://www.tera.com.gt/web/image/product.image/2046/image?unique=43c8868' }} style={{ width: windowHeight, flex: 1 }} /> */}
-
-
+                            <Body>                                
                                 {
                                     route.params.imagenes.map(imagen => (
                                         <Image source={{ uri: imagen.imagen }} style={{ width: windowHeight, flex: 1 }} />

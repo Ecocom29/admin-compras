@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import { View, TextInput } from 'react-native';
 import { Container, Button, H1, Input, Text, Form, Item, Toast } from "native-base";
 import globalStyles from '../Styles/global';
@@ -17,10 +17,15 @@ const AUTENTICAR_CLIENTE = gql`
     }
 `;
 
-
-
 const Login = () => {
-
+    
+    useEffect(()=>{
+        AsyncStorage.getItem('token')
+        .then(x=>{
+            console.log("VERIFICANDO..." , x)
+            navigation.navigate(x ? 'Tienda': 'Login')
+        })
+    }, []);
 
     const [correoElectronico, setGuardarCorreo] = useState('');
     const [contrasenia, setGuardarContrasenia] = useState('');
@@ -29,11 +34,11 @@ const Login = () => {
 
     const [autenticarCliente] = useMutation(AUTENTICAR_CLIENTE);
     const [mensaje, guardarMensaje] = useState(null)
-
+   
 
 
     const iniciarSesion = async () => {
-
+       
         if (correoElectronico === '' || contrasenia === '') {
             //guardarMensaje('Todos los campos son obligatorios');
             notificacion('Todos los campos son obligatorios')
@@ -42,17 +47,13 @@ const Login = () => {
         }
 
         try {
-            console.log(autenticarCliente)
-
             //Enviamos los datos al servidor
             const { data } = await autenticarCliente({
                 variables: {
                     correoElectronico,
                     contrasenia
                 }
-            });
-
-            console.log('Autenticando')
+            });        
 
             //Obtenermos la respuesta del servidor 
             const { token } = data.autenticarCliente;
@@ -79,6 +80,12 @@ const Login = () => {
         //this.txtCorreo.clear();
         setGuardarCorreo('');
         setGuardarContrasenia('');
+    }
+    const ClearInput = () => {
+        console.log("doClear...");
+        let textInput = this.refs["textInput"];
+        console.log(textInput);
+        textInput.clear();
     }
 
     const notificacion = (msj) => {
@@ -112,6 +119,10 @@ const Login = () => {
                             placeholder="Correo electrónico"
                             onChangeText={texto => setGuardarCorreo(texto)}
                             clearButtonMode='always'
+                            autoCapitalize='none'
+                            defaultValue={{ value: '' }}
+                            name='txtCorreo'
+                           
                         />
 
                     </Item>
@@ -122,6 +133,8 @@ const Login = () => {
                             secureTextEntry={true}
                             onChangeText={texto => setGuardarContrasenia(texto)}
                             clearButtonMode='always'
+                            autoCapitalize='none'
+                            name='txtContrasenia'
                         />
 
                     </Item>

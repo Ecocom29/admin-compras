@@ -10,8 +10,8 @@ const Stack = createStackNavigator();
 import Login from './Views/Login';
 import Register from './Views/Register';
 import Tienda from './Views/Tienda';
-
 import DetalleProducto from './Views/DetalleProducto';
+import { Header } from 'react-native/Libraries/NewAppScreen';
 
 /* const cerrarSession = (cliente, history)=>{
   //Remover el token del localstorage
@@ -34,12 +34,12 @@ const App = () => {
               name="Login"
               component={Login}
               options={{
-                title: 'Login',
+                title: 'Inicio de sesion',
                 headerStyle: {
                   backgroundColor: '#2A3F54',
                 },
                 headerTintColor: '#FDFEFE',
-                headerTitleAlign: 'left',
+                headerTitleAlign: 'center',
                 headerRight: () => (
                   <Button
                     onPress={() => alert('This is a button!')}
@@ -54,21 +54,21 @@ const App = () => {
               name="Register"
               component={Register}
               options={{
-                 tittle: "Crear cuenta",
+                tittle: "Crear cuenta",
                 headerStyle: {
                   backgroundColor: "#2A3F54"
                 },
-                headerTintColor: "#FDFEFE", 
+                headerTintColor: "#FDFEFE",
                 headerTitleAlign: 'center'
-               /* headerLeft: (props) => (
-                  <HeaderBackButton
-                    {...props}
-                    onPress={() => {
-                      //cerrarSession()
-                      console.log("Cerrando sesion");
-                    }}
-                  />
-                ),*/
+                /* headerLeft: (props) => (
+                   <HeaderBackButton
+                     {...props}
+                     onPress={() => {
+                       //cerrarSession()
+                       console.log("Cerrando sesion");
+                     }}
+                   />
+                 ),*/
               }}
 
             />
@@ -83,7 +83,7 @@ const App = () => {
                 },
                 headerTitleAlign: 'left',
                 headerTintColor: "#FDFEFE",
-               
+
               }}
 
             />
@@ -92,13 +92,13 @@ const App = () => {
               name="DetalleProducto"
               component={DetalleProducto}
               options={({ route }) => ({
-                  tittle: route.params.nombre,
-                  headerStyle: {
-                    backgroundColor: "#2A3F54",
-                  },
-                  headerTintColor: "#FDFEFE",
+                tittle: route.params.nombre,
+                headerStyle: {
+                  backgroundColor: "#2A3F54",
+                },
+                headerTintColor: "#FDFEFE",
 
-                })
+              })
               }
             />
 

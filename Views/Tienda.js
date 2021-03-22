@@ -48,8 +48,6 @@ const Tienda = () => {
 
     const obtenerEmail = async () => {
         console.log("Removiendo token...");
-        // const email = await AsyncStorage.getItem('emailCliente');
-        // console.log(email);
         //Eliminar token
         await AsyncStorage.removeItem('token');
         await AsyncStorage.removeItem('emailCliente');
@@ -96,21 +94,16 @@ const Tienda = () => {
 
                         </Content>
                     </Tab>
-                    <Tab heading={<TabHeading><Text>Perfil</Text></TabHeading>}>
-
-                    </Tab>
                     <Tab heading={<TabHeading><Icon name="apps" /></TabHeading>}>
-
-                     <Button
+                            <Perfil/>
+                        {/* <Button
                             squeare
                             block
                             style={globalStyles.boton}
                             onPress={() => obtenerEmail()}
                         >
                             <Text>Cerrar sesión</Text>
-                        </Button>
-
-                       
+                        </Button> */}
 
                     </Tab>
                 </Tabs>

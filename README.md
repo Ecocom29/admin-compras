@@ -1,4 +1,4 @@
-** Mobile application to consult products with their details **
+**Mobile application to consult products with their details**
 
 Implemented technologies
 - Android
